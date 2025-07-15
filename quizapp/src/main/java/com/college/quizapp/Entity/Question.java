@@ -11,7 +11,7 @@ import lombok.Data;
 public class Question {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String category;
     private String difficultyLevel;
@@ -19,8 +19,10 @@ public class Question {
     private String option2;
     private String option3;
     private String answer;
+    private String question;
+    private String subCategory;
 
-    public Question(Integer id, String category, String difficultyLevel, String option1, String option2, String option3, String answer) {
+    public Question(Integer id, String category, String difficultyLevel, String option1, String option2, String option3, String answer, String question, String subCategory) {
         this.id = id;
         this.category = category;
         this.difficultyLevel = difficultyLevel;
@@ -28,6 +30,8 @@ public class Question {
         this.option2 = option2;
         this.option3 = option3;
         this.answer = answer;
+        this.question = question;
+        this.subCategory = subCategory;
     }
 
     public Integer getId() {
@@ -87,5 +91,21 @@ public class Question {
     }
 
     public Question() {
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public String getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(String subCategory) {
+        this.subCategory = subCategory;
     }
 }
