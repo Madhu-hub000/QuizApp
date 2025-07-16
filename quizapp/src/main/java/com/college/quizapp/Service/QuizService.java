@@ -3,6 +3,7 @@ package com.college.quizapp.Service;
 import com.college.quizapp.Entity.Question;
 import com.college.quizapp.Entity.QuestionWrapper;
 import com.college.quizapp.Entity.Quiz;
+import com.college.quizapp.Entity.Response;
 import com.college.quizapp.dao.QuestionDao;
 import com.college.quizapp.dao.QuizDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,16 @@ public class QuizService {
             questionFromUser.add(qw);
         }
         return new ResponseEntity<>(questionFromUser, HttpStatus.OK);
+    }
+
+    public ResponseEntity<Integer> calculateMarks(Integer id, Response responses) {
+        Optional<Quiz> quiz = quizDao.findById(id);
+        List<Question> questionFromDB = quiz.get().getQuestionList();
+        int right = 0;
+        for (Question q : questionFromDB){
+            if(responses.getResponses().equals(q.getAnswer()));
+            right++;
+        }
+        return new ResponseEntity<>(right, HttpStatus.OK);
     }
 }

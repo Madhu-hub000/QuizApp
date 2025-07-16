@@ -2,6 +2,7 @@ package com.college.quizapp.Controller;
 
 import com.college.quizapp.Entity.Question;
 import com.college.quizapp.Entity.QuestionWrapper;
+import com.college.quizapp.Entity.Response;
 import com.college.quizapp.Service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,5 +25,10 @@ public class QuizController {
     @GetMapping("get/{id}")
     public ResponseEntity<List<QuestionWrapper>> getQuiz(@PathVariable int id){
         return quizService.getQuiz(id);
+    }
+
+    @PostMapping("submit/{id}")
+    public ResponseEntity<Integer> calculateMarks(@PathVariable Integer id, @RequestBody Response responses){
+        return quizService.calculateMarks(id, responses);
     }
 }
