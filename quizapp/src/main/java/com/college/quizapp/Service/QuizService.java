@@ -49,10 +49,10 @@ public class QuizService {
         int right = 0;
         int i = 0;
         for (Question q : questionFromDB){
-            if(q.getAnswer().equals(questionFromDB.get(i).getAnswer()));
-            right++;
-
-            i++;
+            if(q.getAnswer().equals(responses.get(i).getResponses())) {
+                right++;
+                i++;
+            }
         }
         return new ResponseEntity<>(right, HttpStatus.OK);
     }
