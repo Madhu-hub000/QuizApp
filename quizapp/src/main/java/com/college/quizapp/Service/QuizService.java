@@ -43,13 +43,16 @@ public class QuizService {
         return new ResponseEntity<>(questionFromUser, HttpStatus.OK);
     }
 
-    public ResponseEntity<Integer> calculateMarks(Integer id, Response responses) {
+    public ResponseEntity<Integer> calculateMarks(Integer id, List<Response> responses) {
         Optional<Quiz> quiz = quizDao.findById(id);
         List<Question> questionFromDB = quiz.get().getQuestionList();
         int right = 0;
+        int i = 0;
         for (Question q : questionFromDB){
-            if(responses.getResponses().equals(q.getAnswer()));
+            if(q.getAnswer().equals(questionFromDB.get(i).getAnswer()));
             right++;
+
+            i++;
         }
         return new ResponseEntity<>(right, HttpStatus.OK);
     }
